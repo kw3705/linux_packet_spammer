@@ -3,9 +3,9 @@
   set_fact:
     ip_list: "{{ groups['all'] }}"
 
-- name: Create script to ping all target VMs
+- name: Create script to ping all target VMs by passing ip_list to lps.sh template file
   template:
-    src: ../files/lps.sh
+    src: ../templates/lps.sh
     dest: Public/lps.sh
     owner: "{{ ansible_ssh_user }}"
     group: "{{ ansible_ssh_user }}"
