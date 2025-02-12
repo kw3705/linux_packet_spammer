@@ -1,0 +1,6 @@
+---
+- name: Activate Linux Packet Spammer
+  hosts: linux_boxes
+  become: true
+  roles:
+    - linux_packet_spam

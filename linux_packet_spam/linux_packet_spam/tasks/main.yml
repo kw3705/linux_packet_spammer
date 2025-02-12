@@ -1,0 +1,15 @@
+---
+- name: Get list of target VMs
+  set_fact:
+    ip_list: "{{ groups['all'] }}"
+
+- name: Create script to ping all target VMs
+  template:
+    src: ../files/lps.sh
+    dest: Public/lps.sh
+    owner: "{{ ansible_ssh_user }}"
+    group: "{{ ansible_ssh_user }}"
+    mode: "0777"
+
+- name: Run ping script in background every 20 seconds with a hidden shell
+  shell: nohup watch -n 20 ./Public/lps.sh > /dev/null 2>&1 &
